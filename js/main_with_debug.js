@@ -1,20 +1,20 @@
 var cityPop = [
-    { 
-        city: 'Madison',
-        population: 233209
-    },
-    {
-        city: 'Milwaukee',
-        population: 594833
-    },
-    {
-        city: 'Green Bay',
-        population: 104057
-    },
-    {
-        city: 'Superior',
-        population: 27244
-    }
+	{ 
+		city: 'Madison',
+		population: 233209
+	},
+	{
+		city: 'Milwaukee',
+		population: 594833
+	},
+	{
+		city: 'Green Bay',
+		population: 104057
+	},
+	{
+		city: 'Superior',
+		population: 27244
+	}
 ];
 
 function addColumns(cityPop){
@@ -36,23 +36,25 @@ function addColumns(cityPop){
 }
 
 function addEvents(){
-    document.querySelector("table").addEventListener("mouseover", function(){
-        var color = "rgb(";
-        for (var i=0; i<3; i++){
-            var random = Math.round(Math.random() * 255);
-            color += random;
-            if (i<2){
-                color += ",";
-            } else {
-                color += ")";
-            }
-        }
-        document.querySelector("table").style.backgroundColor = color;
-    });
 
-    function clickme(){
-        alert('Hey, you clicked me!');
-    }
+	document.querySelector("table").addEventListener("mouseover", function(){
+		var color = "rgb(";
+		for (var i=0; i<3; i++){
+			var random = Math.round(Math.random() * 255);
+			color += random; // Corrected to use the variable random
+			if (i<2){
+				color += ",";
+			} else {
+				color += ")";
+			}
+		}
+		document.querySelector("table").style.backgroundColor = color; // Corrected to modify the style property correctly
+	});
 
-    document.querySelector("table").addEventListener("click", clickme);
-}
+	function clickme(){
+
+		alert('Hey, you clicked me!');
+	};
+
+	document.querySelector("table").addEventListener("click", clickme)
+};
