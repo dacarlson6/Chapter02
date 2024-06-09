@@ -36,7 +36,6 @@ function addColumns(cityPop){
 }
 
 function addEvents(){
-
 	document.querySelector("table").addEventListener("mouseover", function(){
 		var color = "rgb(";
 		for (var i=0; i<3; i++){
@@ -48,7 +47,7 @@ function addEvents(){
 				color += ")";
 			}
 		}
-		document.querySelector("table").style.backgroundColor = color; // Corrected to modify the style property correctly
+		document.querySelector("table").style.backgroundColor = color; 
 	});
 
 	function clickme(){
