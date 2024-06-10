@@ -94,7 +94,8 @@ function jsAjax(){
         .then(function(data) {
             console.log('Data conversion successful:', data);
             //callback to process the data
-            callback(data);
+            debugCallback(data);
+            document.querySelector("#mydiv".insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(data));
         })
         .catch(function(error) {
             console.error('Error fetching data:', error);
@@ -116,7 +117,7 @@ function callback(response) {
 
 function debugCallback(response) {
     console.log('Debug callback triggered:', response);
-	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+	//document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
 }
 
 function debugAjax() {
