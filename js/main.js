@@ -10,12 +10,13 @@ function myFunc(){
 window.onload = function() {
     myFunc();
     initialize();
-    jsAjax();
 };
 
 //initialize function called when the script loads
 function initialize(){
     cities();
+    jsAjax();
+    debugAjax();
 };
 
 //function to create a table with cities and their populations
@@ -94,8 +95,8 @@ function jsAjax(){
         .then(function(data) {
             console.log('Data conversion successful:', data);
             //callback to process the data
-            debugCallback(data);
-            document.querySelector("#mydiv".insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(data)));
+            callback(data);
+            //document.querySelector("#mydiv".insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(data)));
         })
         .catch(function(error) {
             console.error('Error fetching data:', error);
