@@ -1,3 +1,9 @@
+//Devin Carlson
+//Activity 3
+//Geog 575
+//June 8, 2024
+
+//array containing the city name and its population
 var cityPop = [
 	{ 
 		city: 'Madison',
@@ -17,6 +23,7 @@ var cityPop = [
 	}
 ];
 
+//function that adds columns to table based on the cityPop array
 function addColumns(cityPop){
 	const table = document.getElementById("cityTable");
 
@@ -31,7 +38,7 @@ function addColumns(cityPop){
 		popCell.innerHTML = cityPop[i].population; //set the population
 
 
-	// Calculate city size based on population
+	//calculate city size based on population
 	var citySize;
 	if (cityPop[i].population < 100000){
 		citySize = 'Small';
@@ -41,51 +48,41 @@ function addColumns(cityPop){
 		citySize = 'Large';
 	}
 	sizeCell.innerHTML = citySize; // Add the city size to the new row
-};
+	};
 }
 
-
-
-
-/*    document.querySelectorAll("tr").forEach(function(row, i){
-        if (i == 0){
-            row.insertAdjacentHTML('beforeend', '<th>City Size</th>');
-        } else {
-            var citySize;
-            if (cityPop[i-1].population < 100000){
-                citySize = 'Small';
-            } else if (cityPop[i-1].population < 500000){
-                citySize = 'Medium';
-            } else {
-                citySize = 'Large';
-            }
-            row.insertAdjacentHTML('beforeend', '<td>' + citySize + '</td>');
-        }
-    }); */
-
+//function to add events to the table
 function addEvents(){
-	document.querySelector("table").addEventListener("mouseover", function(){
+	var table = document.querySelector("table");
+
+	//mouseover event that changes the background color of the table
+	table.addEventListener("mouseover", function() {
 		var color = "rgb(";
+		//generate random color for table background when hovering your mouse over table
 		for (var i=0; i<3; i++){
 			var random = Math.round(Math.random() * 255);
-			color += random; // Corrected to use the variable random
+			color += random;
 			if (i<2){
 				color += ",";
 			} else {
 				color += ")";
 			}
 		}
+		//apply random color to the background of the table
 		document.querySelector("table").style.backgroundColor = color; 
 	});
 
+	//function to alert when the table is clicked
 	function clickme(){
-
 		alert('Hey, you clicked me!');
 	};
 
+	//when the table is clicked, the clickme function will activate
 	document.querySelector("table").addEventListener("click", clickme)
 };
 
+//when the table is fully loaded, activate the functions
 document.addEventListener('DOMContentLoaded', function() {
 	addColumns(cityPop);
+	addEvents();
 });
