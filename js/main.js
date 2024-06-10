@@ -7,7 +7,11 @@ function myFunc(){
     myDiv.innerHTML = "Hello World.";
 };
 
-window.onload = myFunc();
+window.onload = function() {
+    myFunc();
+    initialize();
+    jsAjax();
+};
 
 //initialize function called when the script loads
 function initialize(){
@@ -69,23 +73,78 @@ function cities(){
     myDiv.appendChild(table);
 };
 
-//call the initialize function when the window has loaded
-window.onload = initialize();
+function jsAjax(){
+    console.log('Starting AJAX request...');
 
-function debugCallback(response){
+    //define the data request
+    var request = new Request('data/MegaCities.geojson');
+
+    //define fetch parameters
+    var init = {
+        method: 'GET'
+    }
+
+    //use Fetch to retrieve the data
+    fetch(request, init)
+        .then(function(response) {
+            console.log('Fetch successful, converting data...'); 
+            //convert data to useable form
+            return response.json();
+        })
+        .then(function(data) {
+            console.log('Data conversion successful:', data);
+            //callback to process the data
+            callback(data);
+        })
+        .catch(function(error) {
+            console.error('Error fetching data:', error);
+        });
+
+    console.log('AJAX request setup complete.');
+}
+
+//define callback function
+function callback(response) {
+    console.log(response);
+    response.features.forEach(function(feature) {
+        console.log('City: ', feature.properties.City);
+    });
+
+    var myDiv = document.getElementById("mydiv");
+    myDiv.insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(response));
+}
+
+function debugCallback(response) {
+    console.log('Debug callback triggered:', response);
 	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
-};
+}
 
-function debugAjax(){
+function debugAjax() {
+    console.log('Starting debug AJAX request...');
 	
 	var myData;
 	
 	fetch("data/MegaCities.geojson")
-		.then(function(response){
-			debugCallback(response);
+		.then(function(response) {
+			return response.json;
 		})
+        .then(function(data) {
+            mydata = data;
+            console.log('Debug data:', myData);
+            debugCallback(myData);
+        })
+        .catch(function(error) {
+            console.error('Error fetching debug data:', error);
+        });
 
-	document.querySelector("#mydiv").insertAdjacentHTML('beforeend' '<br>GeoJSON data:<br>' + JSON.stringify(myData))
-};
+    console.log('Debug AJAX request setup complete.');
 
-document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+	//document.querySelector("#mydiv").insertAdjacentHTML('beforeend' '<br>GeoJSON data:<br>' + JSON.stringify(myData))
+}
+
+//document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+
+document.addEventListener('DOMContentLoaded', function() {
+    jsAjax();
+    debugAjax();
+});
