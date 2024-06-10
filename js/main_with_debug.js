@@ -57,3 +57,7 @@ function addEvents(){
 
 	document.querySelector("table").addEventListener("click", clickme)
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+	addColumns(cityPop);
+});
