@@ -111,13 +111,16 @@ function callback(response) {
         console.log('City: ', feature.properties.City);
     });
 
+    document.querySelector("#mydiv").insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(response));
+
+
     var myDiv = document.getElementById("mydiv");
     myDiv.insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(response));
 }
 
 function debugCallback(response) {
     console.log('Debug callback triggered:', response);
-	//document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+    document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
 }
 
 function debugAjax() {
@@ -140,12 +143,10 @@ function debugAjax() {
 
     console.log('Debug AJAX request setup complete.');
 
-	//document.querySelector("#mydiv").insertAdjacentHTML('beforeend' '<br>GeoJSON data:<br>' + JSON.stringify(myData))
 }
 
 //document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
 
 document.addEventListener('DOMContentLoaded', function() {
-    jsAjax();
-    debugAjax();
+    initialize();
 });
