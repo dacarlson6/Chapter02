@@ -96,7 +96,6 @@ function jsAjax(){
             console.log('Data conversion successful:', data);
             //callback to process the data
             callback(data);
-            //document.querySelector("#mydiv".insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(data)));
         })
         .catch(function(error) {
             console.error('Error fetching data:', error);
@@ -113,7 +112,6 @@ function callback(response) {
     });
 
     document.querySelector("#mydiv").insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(response));
-
 }
 
 function debugCallback(response) {
@@ -131,7 +129,7 @@ function debugAjax() {
 			return response.json;
 		})
         .then(function(data) {
-            mydata = data;
+            myData = data;
             console.log('Debug data:', myData);
             debugCallback(myData);
         })
@@ -140,10 +138,7 @@ function debugAjax() {
         });
 
     console.log('Debug AJAX request setup complete.');
-
 }
-
-//document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
 
 document.addEventListener('DOMContentLoaded', function() {
     initialize();
