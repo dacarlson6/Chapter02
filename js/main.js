@@ -1,3 +1,8 @@
+//Devin Carlson
+//Activity 3
+//Geog 575
+//June 10, 2024
+
 // Example 2.1: Accessing and manipulating the <div> element
 var myDiv = document.getElementById("mydiv");
 myDiv.innerHTML = "Hello World";
