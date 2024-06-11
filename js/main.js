@@ -7,6 +7,7 @@ function myFunc(){
     myDiv.innerHTML = "Hello World.";
 };
 
+//execute functions when the window loads
 window.onload = function() {
     myFunc();
     initialize();
@@ -74,6 +75,7 @@ function cities(){
     myDiv.appendChild(table);
 };
 
+//function to perform AJAX request and fetch GeoJSON data
 function jsAjax(){
     console.log('Starting AJAX request...');
 
@@ -88,39 +90,41 @@ function jsAjax(){
     //use Fetch to retrieve the data
     fetch(request, init)
         .then(function(response) {
-            console.log('Fetch successful, converting data...'); 
+            //console.log('Fetch successful, converting data...'); 
             //convert data to useable form
             return response.json();
         })
         .then(function(data) {
-            console.log('Data conversion successful:', data);
+            //console.log('Data conversion successful:', data);
             //callback to process the data
             callback(data);
         })
         .catch(function(error) {
-            console.error('Error fetching data:', error);
+            //console.error('Error fetching data:', error);
         });
 
-    console.log('AJAX request setup complete.');
+    //console.log('AJAX request setup complete.');
 }
 
 //define callback function
 function callback(response) {
-    console.log(response);
+    //console.log(response);
     response.features.forEach(function(feature) {
-        console.log('City: ', feature.properties.City);
+        //console.log('City: ', feature.properties.City);
     });
 
     document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data:' + JSON.stringify(response));
 }
 
+//define debug callback function
 function debugCallback(data) {
-    console.log('Debug callback triggered:', data);
+    //console.log('Debug callback triggered:', data);
     document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(data));
 }
 
+//function to debug ajax request and fetch data
 function debugAjax() {
-    console.log('Starting debug AJAX request...');
+    //console.log('Starting debug AJAX request...');
 	
 	var myData;
 	
@@ -130,16 +134,17 @@ function debugAjax() {
 		})
         .then(function(data) {
             myData = data;
-            console.log('Debug data:', myData);
+            //console.log('Debug data:', myData);
             debugCallback(myData);
         })
         .catch(function(error) {
-            console.error('Error fetching debug data:', error);
+            //console.error('Error fetching debug data:', error);
         });
 
-    console.log('Debug AJAX request setup complete.');
+    //console.log('Debug AJAX request setup complete.');
 }
 
+//initialize the functions when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initialize();
 });
