@@ -78,7 +78,7 @@ function jsAjax(){
     console.log('Starting AJAX request...');
 
     //define the data request
-    var request = new Request('data/MegaCities.geojson');
+    var request = new Request('MegaCities.geojson');
 
     //define fetch parameters
     var init = {
