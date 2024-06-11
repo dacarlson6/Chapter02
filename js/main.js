@@ -114,9 +114,9 @@ function callback(response) {
     document.querySelector("#mydiv").insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(response));
 }
 
-function debugCallback(response) {
-    console.log('Debug callback triggered:', response);
-    document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(myData))
+function debugCallback(data) {
+    console.log('Debug callback triggered:', data);
+    document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(data));
 }
 
 function debugAjax() {
@@ -126,7 +126,7 @@ function debugAjax() {
 	
 	fetch("data/MegaCities.geojson")
 		.then(function(response) {
-			return response.json;
+			return response.json();
 		})
         .then(function(data) {
             myData = data;
