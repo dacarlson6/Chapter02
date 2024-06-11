@@ -111,7 +111,7 @@ function callback(response) {
         console.log('City: ', feature.properties.City);
     });
 
-    document.querySelector("#mydiv").insertAdjacentHTML('beforeend', '<br>GeoJSON data:<br>' + JSON.stringify(response));
+    document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data:' + JSON.stringify(response));
 }
 
 function debugCallback(data) {
